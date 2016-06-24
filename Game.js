@@ -51,6 +51,7 @@ window.onload = function () {
         ctx.fillStyle = "#000";
         ctx.fillRect(0, 0, canvas.width, canvas.height);
         hud.draw(ctx);
+        fruit.draw(ctx);
         requestAnimationFrame(game);
     }
     game();
@@ -61,5 +62,5 @@ window.onload = function () {
  */
 function reset() {
     hud = new HUD(canvas.width, canvas.height);
-
+    fruit = new fruit(null);
 }
