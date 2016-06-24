@@ -1,6 +1,6 @@
 
 function fruit(board) {
-    this.colour = "#ff0000";
+    this.colour = "#ff0070";
     this.position = { x: rand(1, 30, 1), y: rand(1, 30, 1) };
 
     function rand(min, max, interval) {
