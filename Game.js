@@ -4,7 +4,12 @@ var canvas = document.getElementById("snakeCanvas");
 var hud;
 var snake;
 var fruit;
-var board;
+var board = [];
+var boardLength = canvas.width / 20;
+
+for(var i = 0; i < boardLength; ++i){
+    board[i] = [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0];
+}
 
 /**
  * main game function
