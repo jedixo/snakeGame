@@ -1,15 +1,19 @@
 
 var canvas = document.getElementById("snakeCanvas");
-
+// board goes 1-30 not 0-29 as 0 is off screen
 var hud;
 var snake;
 var fruit;
 var board = [];
 var boardLength = canvas.width / 20;
 
-for(var i = 0; i < boardLength; ++i){
-    board[i] = [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0];
+for (var i = 0; i < boardLength; ++i) {
+    board[i] = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0];
 }
+
+var currentFrame = 0;
+var speed = 60; //decrease this number to incrase speed
+var direction = 'n';
 
 /**
  * main game function
@@ -52,11 +56,20 @@ window.onload = function () {
      */
     function game() {
 
-        //clears canvas
+        if (currentFrame == speed) {
+            //clears canvas
+            snake.move(direction);
+            currentFrame = 0;
+        } else {
+            currentFrame++;
+        }
+
+
         ctx.fillStyle = "#000";
         ctx.fillRect(0, 0, canvas.width, canvas.height);
         hud.draw(ctx);
         fruit.draw(ctx);
+        snake.draw(ctx);
         requestAnimationFrame(game);
     }
     game();
@@ -67,5 +80,6 @@ window.onload = function () {
  */
 function reset() {
     hud = new HUD(canvas.width, canvas.height);
-    fruit = new fruit(null);
+    snake = new snake(board);
+    fruit = new fruit(board);
 }
