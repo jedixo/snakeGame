@@ -1,9 +1,10 @@
 function snake(board) {
     this.colour = "#7070ff";
-    this.blocks = [[15, 15], [15, 16]];
+    this.blocks = [[15, 15], [15, 16], [15, 17]];
 
     board[15][15] = 1;
     board[15][16] = 1;
+    board[15][17] = 1;
 
     this.grow = function () {
         this.blocks.push([this.blocks[this.blocks.length - 1][0], this.blocks[this.blocks.length - 1][1]]);

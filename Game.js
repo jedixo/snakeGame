@@ -12,7 +12,7 @@ for (var i = 0; i < boardLength; ++i) {
 }
 
 var currentFrame = 0;
-var speed = 60; //decrease this number to incrase speed
+var speed = 30; //decrease this number to incrase speed
 var direction = 'n';
 
 /**
