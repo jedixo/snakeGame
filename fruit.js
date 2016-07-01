@@ -2,7 +2,7 @@
 function fruit(board) {
     this.colour = "#ff0070";
     this.position = { x: rand(1, 30, 1), y: rand(1, 30, 1) };
-   
+
     function rand(min, max, interval) {
         if (typeof (interval) === 'undefined') interval = 1;
         var r = Math.floor(Math.random() * (max - min + interval) / interval);

@@ -1,14 +1,14 @@
 
 var canvas = document.getElementById("snakeCanvas");
-// board goes 1-30 not 0-29 as 0 is off screen
+// board goes 1-31 not 0-30 as 0 is off screen
 var hud;
 var snake;
 var fruit;
 var board = [];
-var boardLength = canvas.width / 20;
+var boardLength = canvas.width / 20 + 1;
 
 for (var i = 0; i < boardLength; ++i) {
-    board[i] = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0];
+    board[i] = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0];
 }
 
 var currentFrame = 0;
