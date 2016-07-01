@@ -32,7 +32,6 @@ function snake(board) {
                 break;
             default:
         }
-        console.log("test");
         board[this.blocks[0][0]][this.blocks[0][1]] = 1;
 
     }
