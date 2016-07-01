@@ -31,23 +31,23 @@ window.onload = function () {
      *
      * can be used to add shortcuts to the game
      * currently controls the pause function
-     
+     * left = 37
+    up = 38
+    right = 39
+    down = 40*/
+
     window.onkeyup = function (e) {
-        if (player === 1 || player == 2) {
-            var key = e.keyCode ? e.keyCode : e.which;
-            if (key === 80 && play === true) { //80 = p
-                hud.message = "paused";
-                hud.timer = 55;
-                hud.draw(ctx);
-                socket.emit("hud", hud);
-                play = false;
-                socket.emit("pause", play);
-            } else if (key === 80 && play === false) {
-                play = true;
-                socket.emit("pause", play);
-            }
+        var key = e.keyCode ? e.keyCode : e.which;
+        if (key === 37) {
+            direction = 'w';
+        } else if (key === 38) {
+            direction = 'n';
+        } else if (key === 39) {
+            direction = 'e';
+        } else if (key === 40) {
+            direction = 's';
         }
-    }*/
+    }
 
     /**
      * Main game loop

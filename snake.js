@@ -11,7 +11,7 @@ function snake(board) {
 
     this.move = function (direction) {
         board[this.blocks[this.blocks.length - 1][0]][this.blocks[this.blocks.length - 1][1]] = 0;
-        this.blocks.pop(); //takes of the first elelent
+        this.blocks.pop();
         switch (direction) {
             case 'n':
                 //up
