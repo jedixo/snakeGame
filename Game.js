@@ -59,6 +59,11 @@ window.onload = function () {
         if (currentFrame == speed) {
             //clears canvas
             snake.move(direction);
+            if (snake.blocks[0][0] == fruit.position.x && snake.blocks[0][1] == fruit.position.y) {
+                fruit.newFruit(board);
+                snake.grow();
+                speed--;
+            }
             currentFrame = 0;
         } else {
             currentFrame++;
