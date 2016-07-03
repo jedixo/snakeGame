@@ -17,7 +17,6 @@ function fruit(board) {
     }
 
     this.draw = function (ctx) {
-        //console.log(this.position);
         ctx.fillStyle = this.colour;
         ctx.fillRect((this.position.x * 20) - 20, (this.position.y * 20) - 20, 20, 20);
     }
