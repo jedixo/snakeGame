@@ -22,7 +22,9 @@ var direction = 'n';
  */
 window.onload = function () {
     ctx = canvas.getContext("2d");
-    reset();
+    hud = new HUD(canvas.width, canvas.height);
+    snake = new snake(board);
+    fruit = new fruit(board);
     hud.draw(ctx);
 
 
@@ -57,33 +59,31 @@ window.onload = function () {
     function game() {
 
         if (currentFrame == speed) {
+           
             //control border detection
             if (snake.blocks[0][0] + 1 === 31 && direction === 'e' || snake.blocks[0][0] - 1 === 0 && direction === 'w') {
                 //hit left or right wall
-                snake.blocks = [[15, 15], [15, 16], [15, 17]];
-                direction = 'n';
-                speed = 30;
-                fruit.newFruit(board);
+                reset();
             } else if (snake.blocks[0][1] + 1 === 31 && direction === 's' || snake.blocks[0][1] - 1 === 0 && direction === 'n') {
                 //hit top or bottom wall
-                snake.blocks = [[15, 15], [15, 16], [15, 17]];
-                direction = 'n';
-                speed = 30;
-                fruit.newFruit(board);
+                reset();
             } else {
                 snake.move(direction);
+                 if (snake.checkIfOverlap()) {
+                console.log(snake.checkIfOverlap());
+                reset();
+            }
+            snake.hasGrown = false;
                 //controls fruit collection
                 if (snake.blocks[0][0] == fruit.position.x && snake.blocks[0][1] == fruit.position.y) {
                     fruit.newFruit(board);
                     snake.grow();
+                    snake.hasGrown = true;
                     if (speed !== 0) {
                         speed--;
                     }
                 }
             }
-
-
-            //control snake hitting itself
             currentFrame = 0;
         } else {
             currentFrame++;
@@ -104,7 +104,9 @@ window.onload = function () {
  * resets the game
  */
 function reset() {
-    hud = new HUD(canvas.width, canvas.height);
-    snake = new snake(board);
-    fruit = new fruit(board);
+    snake.blocks = [[15, 15], [15, 16], [15, 17]];
+    snake.hasGrown = false;
+    direction = 'n';
+    speed = 30;
+    fruit.newFruit(board);
 }
