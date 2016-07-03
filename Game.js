@@ -57,13 +57,33 @@ window.onload = function () {
     function game() {
 
         if (currentFrame == speed) {
-            //clears canvas
-            snake.move(direction);
-            if (snake.blocks[0][0] == fruit.position.x && snake.blocks[0][1] == fruit.position.y) {
+            //control border detection
+            if (snake.blocks[0][0] + 1 === 31 && direction === 'e' || snake.blocks[0][0] - 1 === 0 && direction === 'w') {
+                //hit left or right wall
+                snake.blocks = [[15, 15], [15, 16], [15, 17]];
+                direction = 'n';
+                speed = 30;
                 fruit.newFruit(board);
-                snake.grow();
-                speed--;
+            } else if (snake.blocks[0][1] + 1 === 31 && direction === 's' || snake.blocks[0][1] - 1 === 0 && direction === 'n') {
+                //hit top or bottom wall
+                snake.blocks = [[15, 15], [15, 16], [15, 17]];
+                direction = 'n';
+                speed = 30;
+                fruit.newFruit(board);
+            } else {
+                snake.move(direction);
+                //controls fruit collection
+                if (snake.blocks[0][0] == fruit.position.x && snake.blocks[0][1] == fruit.position.y) {
+                    fruit.newFruit(board);
+                    snake.grow();
+                    if (speed !== 0) {
+                        speed--;
+                    }
+                }
             }
+
+
+            //control snake hitting itself
             currentFrame = 0;
         } else {
             currentFrame++;
